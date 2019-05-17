@@ -1,10 +1,22 @@
 [Go语言从入门到实战](https://time.geekbang.org/course/intro/160)
 
-04 应用入口文件名不一定是main.go
+04 
 
-06 类型间，类型与其别名间不可隐式转换
+应用入口文件名不一定是main.go，必须package main、func main。
 
-07 数组间可比较。位操作符 &^ 按位清零
+main函数不支持返回值，使用os.exit()返回。
+
+main函数不支持参数传入，使用os.Args读取参数
+
+05
+
+测试程序格式：**源码文件**以_test结尾，测试方法以Test开头：func TestXXX(t *testing.T){…}
+
+大写开头包外可访问。
+
+06 类型间，类型与其别名间不可隐式转换。
+
+07 数组间可比较。位操作符 &^ 按位清零。
 
 12 string类型内容不可更改，len存放的是byte数，且string可存放任何二进制数据。占位符"%[下标]x",数组。
 
