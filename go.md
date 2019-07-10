@@ -1,6 +1,14 @@
 
 
-## [Go语言从入门到实战](https://time.geekbang.org/course/intro/160)
+### 说明与目录
+
+学习Go语言的记录
+
+* [Go语言从入门到实战](https://github.com/helunxing/writing/blob/master/go.md#go%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98)
+
+* [Go语言核心36讲](https://github.com/helunxing/writing/blob/master/go.md#go%E8%AF%AD%E8%A8%80%E6%A0%B8%E5%BF%8336%E8%AE%B2)
+
+### [Go语言从入门到实战](https://time.geekbang.org/course/intro/160)
 
 #### 04 
 
@@ -202,7 +210,7 @@ stringbuilder
 
 开源实现： Netflix。 类spring框架。 
 
-## [Go语言核心36讲](https://time.geekbang.org/column/112)
+### [Go语言核心36讲](https://time.geekbang.org/column/112)
 
 #### 1 gopath
 
