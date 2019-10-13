@@ -1,13 +1,3 @@
-
-
-### 说明与目录
-
-学习Go语言的记录
-
-* [Go语言从入门到实战](https://github.com/helunxing/writing/blob/master/go.md#go%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98)
-
-* [Go语言核心36讲](https://github.com/helunxing/writing/blob/master/go.md#go%E8%AF%AD%E8%A8%80%E6%A0%B8%E5%BF%8336%E8%AE%B2)
-
 ### [Go语言从入门到实战](https://time.geekbang.org/course/intro/160)
 
 #### 04 
@@ -28,9 +18,9 @@ main函数不支持参数传入， 使用os. Args读取参数
 
 类型间， 类型与其别名间不可隐式转换。 
 
-#### 07
+#### 07 数组和切片
 
-数组间可比较。 位操作符 &^ 按位清零。 
+len和cap。数组间可比较。位操作符 &^ 按位清零。
 
 #### 12
 
@@ -82,19 +72,25 @@ panic不可恢复错误， 退出前会执行defer内容。 Os.exit不会调用d
 
 协程中执行： go关键字空格函数。 注意函数中不应访问非线程安全资源。 方法调用都是值传递。 
 
-#### 24
+#### 24 共享内存并发
 
-sync. Mutex 锁 sync. Waitgroup 等待 rwlock读写锁
+sync. Mutex 锁。sync. Waitgroup 等待。rwlock 读写锁。
 
-#### 25
+#### 25 csp并发机制
 
-csp并发机制， 实现异步返回。 chan建立channel， 实现两函数通信。 <-向channel传输数据。 ？ 需要再看
+通道完成同步。与actor model比较，松耦合channel有容量，接收程序主动处理。返回值是channel，实现异步返回。
 
-#### 26 select多路选择实现超时处理
+#### 26 select多路选择实现超时退出
 
-#### 27 channel的关闭
+同时等待多个阻塞事件，顺序无关。<-time. After()。慢响应比快失败要严重
+
+#### 27 channel的关闭和广播
+
+关闭后返回类型默认值和false。向关闭的channel发送数据，会panic
 
 #### 28 使用channel和select实现关闭多个消费者
+
+close()是广播机制
 
 #### 29 context结束关联任务
 
@@ -214,3 +210,58 @@ stringbuilder
 
 #### 1 gopath
 
+goroot安装，gopath工作区，gobin生成可执行。
+
+代码组织方式：目录与包对应。代码包导入路径：gopath的src下。源码文件安装位置：某个工作区的src下，pkg归档文件.a，bin可执行文件。归档文件与代码包同名，与文件夹同级。pkg下有平台相关文件夹。
+
+#### 2 命令源码文件
+独立程序入口，属于main包，包含无参数无结果的main函数。可go run运行可参数。main结束意味着程序结束。
+
+flag接收参数
+
+#### 3 库源码文件
+供其他程序调用的程序
+
+构建结果文件名与其父目录名称一致
+
+导入包用文件夹名，但要as包名
+
+internal模块级私有
+
+#### 4 程序实体
+变量声明。
+代码块内:=部分重声明。
+
+5 作用域
+
+6 类型检查name.(type) 类型转化 类型别名
+
+#### 7 数组和切片
+
+数组结构体值类型，切片通道字典函数是引用类型。
+
+切片生成扩容缩容。
+
+#### 8 container/list和ring
+list双向链表，element链表中元素。
+
+list不接受外部element，延迟初始化。
+
+ring循环链表和list的区别：实际都是循环链表。list由element实现，ring自己。ring代表一个元素，list代表整个。ring可以指定元素数。
+
+len(ring)On
+
+#### 9 map的操作和约束
+哈希桶，不允许不支持等于的类型做键，键比较。
+
+nil字典除添加外都会正常进行
+
+并发不安全
+
+#### 10 通道
+通过复制进入和离开通道。会panic：收发关闭已关闭的chan。chan内复制的是浅复制
+
+11 
+
+
+### 文章
