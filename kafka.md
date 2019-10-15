@@ -2,6 +2,7 @@
 
 #### 1
 消息引擎系统。kafka使用二进制序列化。点对点模型和发布订阅模型。避免流量冲击和不必要的交互。
+
 #### 2 概念
 boroker：集群由多个b进程构成。topic：发布、订阅的对象。patrition：实现伸缩性，将topic划分为多个分区，分区有序，每个消息只被一个分区存储。replica：分为leader、follower，数据相同，l提供服务，f不提供。每个topic可m个part，每个part可多个repl。每个repl有一个l，剩下的是f。part可在不同的broker上。
 
@@ -35,7 +36,34 @@ linux优势：io模型（epoll），数据网络效率（零拷贝），社区�
 
 broker：log.dirs，不管log.dir，故障转移。zk：zookeeper.connect写成a,b,c/name。borker连接：listeners监听组，advertised.listeners对外组，host.name/port过时。topic：自动创建，脏选举，定期重选举。数据留存：消息保存时间，磁盘大小，接收最大消息大小。
 
-8：topic参数：
+8 topic参数：会覆盖broker参数。消息保存时长，预留空间，处理消息的大小。JVM堆大小，gc参数。操作系统参数
+
+#### 9 生产者消息分区机制原理
+分区策略：轮询、随机、按key选择、按地理位置
+
+#### 10 生产者压缩算法
+消息和消息集合。broker和生产者都可能压缩
+
+消息版本转化需要重压缩
+
+produ压缩，broker保持，consu解压缩
+
+#### 11 无消息丢失配置实现
+只对已提交的消息做有限度的持久化保证：已写入，仍存在broker的消息。
+
+丢失原因：生产者未管反馈，消费者多线程。
+
+最佳实践
+
+#### 12 客户端 拦截器
+
+#### 13 java生产者管理tcp连接
+生成实例后启动sender，与bootstrap.servers全部连接。更新元数据和发送时建立连接。
+
+关闭连接：主动，自动
+
+#### 14 交付可靠性 精确处理一次
+
 
 
 ## [Kafka流处理平台](https://www.imooc.com/learn/1043)

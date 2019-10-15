@@ -1,4 +1,4 @@
-### [Go语言从入门到实战](https://time.geekbang.org/course/intro/160)
+## [Go语言从入门到实战](https://time.geekbang.org/course/intro/160)
 
 #### 04 
 
@@ -206,7 +206,7 @@ stringbuilder
 
 开源实现： Netflix。 类spring框架。 
 
-### [Go语言核心36讲](https://time.geekbang.org/column/112)
+## [Go语言核心36讲](https://time.geekbang.org/column/112)
 
 #### 1 gopath
 
@@ -261,7 +261,14 @@ nil字典除添加外都会正常进行
 #### 10 通道
 通过复制进入和离开通道。会panic：收发关闭已关闭的chan。chan内复制的是浅复制
 
-11 
+11 单向通道 select
+select某case中chan关闭以后永不进入方式：将chan置为nil
+跳出select外部的for方法：break加标签，goto
+
+#### 12 函数
 
 
-### 文章
+## 文章
+
+#### [使用Beego构建完整web项目](https://www.imooc.com/learn/1053)
+
