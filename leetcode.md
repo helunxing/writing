@@ -1,5 +1,13 @@
 # leecode
 
+#### 参赛
+
+心理素质还不够好、过度化问题
+
+先转移方程再写程序
+
+应用调试方法对比程序区别
+
 #### [探索 初级算法 内容记录](https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/)
 
 * 数组：26, 189, 136, 350, 1
