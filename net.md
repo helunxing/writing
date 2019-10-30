@@ -1,16 +1,93 @@
-#### 拥塞控制
+### http
+cs 请求应答 无状态
 
-#### 三次握手四次挥手问题
+#### 基本
 
-三次握手为了防止连接过期请求报文延迟到达，浪费服务器资源。
+键：host contenttype accept length encoding language user-agent cachectl
 
-四次是为了
+状态码：1收到，需要继续 2成功 3重定向 4c错误 5s错误
+
+post提交c，put更新update
+
+get用来幂等获取资源，post不幂等改变。get参数放在url，post在内容中
+
+### tcpip
+
+socket：协议、源元组、目的元组
+
+tcp多路复用：epoll，非阻塞socket，协程
+
+udp面向报文，有非点对点。
+
+ttl：ip中的最长存活跳数
+
+msl：存活最长时间
+
+任务：寻址，连接，分段，正确送达，流控拥塞控制
+
+内容：端口号，seq，ack，
+
+![](pic/TCP状态图.jpg)
+
+#### 握手
+
+为什么必须同步序列号？
+
+三次握手为了同步起始序列号。防止连接过期请求报文延迟到达搞乱（若此则rst），或者第二次丢失，浪费服务器资源。
+
+closed listen synsent synreceived established
+
+syn syn/ack ack
+
+半连接
+
+#### 挥手
+
+四次挥手是为了半关闭连接
+
+finwait1 finwait2 timewait()
+
+fin\ack ack fin\ack ack
+
+closewait(for app)  lastack
+
+closing：若finwait1状态未收到返回时，先收到对方的关闭请求。
+
+timewait优化：防止收到上次连接内容。timestamp迟到拒绝
+
+rst报文关闭连接：程序遇到异常
+
+半关闭
+
+#### 重传
+
+seq ack字节序列号。回绕问题paws：时间戳解决。rtt：往返时间，重传，难算。rto重传时间略大于rtt。
+
+#### 流控
+
+MSS协商，对流控无影响。
+
+window字段发送接收窗口。窗口合适大小：带宽*rtt。
+
+SWS糊涂窗口：因接收方处理能力不足，产生的频繁小报文传输。解决：接收方窗口不够大就通知0，发送方：没有飞行或达到某值就发。
+
+延迟确认减少ack报文
+
+#### 拥控
+
+慢启动，拥塞避免。指数增长，加法增大，乘法减小。
+
+快速重传：失序立即报告，而不是捎带。快恢复：发现重复回执，说明未拥塞，所以设为某值。
 
 #### P2P UDP TCP
 
 基础：UDP/TCP有可靠特性
 
-原因：1拥塞控制问题 2端口转发问题
+原因：1拥塞控制问题，无必要 2端口转发问题，有时候不可行
+
+[为什么p2p模式的tunnel底层通常用udp而不是tcp？](https://mp.weixin.qq.com/s/dknMBfvdiNEc7mD_eQtqfg)
+
+#### arp
 
 ## [Web协议详解与抓包实战](https://time.geekbang.org/course/intro/175)
 
